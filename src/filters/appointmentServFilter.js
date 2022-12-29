@@ -7,13 +7,6 @@ const transform = (payload) => {
     
         if(payload.operation){
             switch(payload.operation){
-                case 'clinic-appointments':
-                    appointmentService.getAppointmentsByClinic(payload.personal_number).then(res => {
-                        console.log('res.topic:', payload.resTopic)
-                        client.publish(`${payload.resTopic}/appointments`,JSON.stringify(res),{qos:2})
-                    }).catch( e => {
-                        console.log(e)
-                    })
                 case 'user-appointments':
                     appointmentService.getAppointmentsByUser(payload.personal_number).then(res => {
                         console.log('res.topic:', payload.resTopic)

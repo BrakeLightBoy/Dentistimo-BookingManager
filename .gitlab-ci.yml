@@ -10,6 +10,6 @@ build:
   tags:
     - docker
   script:
-    - cd server
+    - cd src
     - npm install
 

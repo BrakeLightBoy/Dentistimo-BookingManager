@@ -5,8 +5,6 @@ const stringToSlot = (timeStr) => {
     
     const slot = (parseInt(hourMinutes[0])*2) + ((parseInt(hourMinutes[1])===30) ? 1:0)
 
-    // console.log('orgStr:',timeStr)
-    // console.log('slot:',slot)
     return slot
 }
 
@@ -17,8 +15,6 @@ const slotToString = (slot) => {
     const hours = Math.floor(slot/2)
     const time = hours+":"+minutes
 
-    // console.log('orgSlot:',slot)
-    // console.log('time:',time)
     return time
 
 }

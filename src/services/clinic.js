@@ -30,7 +30,6 @@ const createClinic = async (newClinic) => {
             return clinic;
 
         } catch(e){
-            console.log(e)
             return Promise.reject('Malformed clinic data');
         }
 
@@ -94,7 +93,6 @@ const editClinic = async (id, newClinic) => {
             return clinic;
 
         } catch(e){
-            console.log(e)
             return Promise.reject('Malformed clinic data');
         }
 
@@ -126,7 +124,6 @@ const getClinicAppointments = async (id) => {
             const dentistAppointments = await appointmentService.getAppointmentsByDentist(dentist._id)
             appointments = appointments.concat(dentistAppointments)
         } 
-        console.log("ap1:",appointments)
 
         if(appointments.length === 0) {
             return Promise.reject('No appointments for clinic:'+id)

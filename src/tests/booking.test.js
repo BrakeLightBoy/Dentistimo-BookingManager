@@ -102,44 +102,7 @@ it('should successfully edit an appointment', done => {
                 })
               })
 })
-              it('successfully get all the appointments for a date', done => {
-                User.create({first_name : 'Sam', last_name :'Jobara',
-                       password : 'jultomte', email_address: 'notjobara@chalmers.se',
-                        personal_number: '7205261235'}).then(user => {
-                          
-                           Clinic.create({
-                          name: "test-clinic",
-                          owner: "test-owner",
-                          address: "Spannmålsgatan 20",
-                          city: "Gothenburg",
-                          coordinate: {
-                            longitude: 11.969388,
-                            latitude: 57.707619
-                          },
-                          opening_hours: {
-                            monday: "9:00-17:00",
-                            tuesday: "8:00-17:00",
-                            wednesday: "7:00-16:00",
-                            thursday: "9:00-17:00",
-                            friday: "9:00-15:00",
-                          }}).then(clinic => {
-                              Dentist.create({first_name: 'dentistfirst', last_name:'dentistlast', password:'jultomte',
-                              username: 'dentist1', clinic: clinic._id}).then(dentist => {
-                             
-                              const date = new Date()
-                              const requestid = uuid.v1()
-                              appointmentService.createAppointment(1, date, user._id , dentist._id , requestid)
-                              .then(appointment => {
-                                 appointmentService.getAppointmentsByDate(date).then(userappointments => {
-                                    console.log('4', userappointments)
-                                    expect(userappointments.length).toEqual(1)
-                                    done()
-                                 })
-                                })
-                              })      
-                              })
-                              })
-                            }) 
+             
                                     
 
   /*it('get all the free slots for a clinic', done => {

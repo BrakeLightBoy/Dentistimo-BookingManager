@@ -41,12 +41,8 @@ const transform = (payload) => {
                     }).catch( e => {
                     })
                     break;
-                default:
-                    console.log('Wrong user operation given')
             }
-        } else {
-            console.log('No operation given')
-        }
+        } 
 }
 
 module.exports = transform

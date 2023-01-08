@@ -131,7 +131,6 @@ async function getClinicFreeSlots(clinicId, year, month){
 async function registerBooking(userPnum,clinic,dt){
     const date = new Date(dt)
     if(!( (userPnum !== []) && userPnum && clinic && date)){
-        console.log('Parameter value')
     } else {
                //getMonth is 0 indexed (returns int from 0 to 11)
         const month = date.getMonth()+1
@@ -154,9 +153,7 @@ async function registerBooking(userPnum,clinic,dt){
                     break;
                 }
             }
-        } else {
-            console.log('No such user')
-        }     
+        }      
     }
 }
 

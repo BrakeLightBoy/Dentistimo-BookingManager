@@ -41,10 +41,8 @@ const editAppointment = async (id, newAppointment) => {
                 {
                     date: newAppointment.date || oldAppointment.date,
                     dentist_id: newAppointment.dentist_id || oldAppointment.dentist_id
-                },{new: true}
+                }, {new: true}
             )
-
-            //await appointment.save(); 
             return appointment;
 
         } catch(e){
@@ -78,8 +76,8 @@ const getAppointmentsByUser = async (personal_number) => {
         const userAppointments = await Appointment.find({user_id: user._id}).populate({
             path: 'dentist_id',
             populate: {
-            path:'works_at',
-            model:'Clinic'
+                path:'works_at',
+                model:'Clinic'
             }
         }) 
         return userAppointments;

@@ -3,13 +3,21 @@ image: node:14-alpine
 stages:
   - build
   - test
-  - deploy
-
 build:
   stage: build
   tags:
     - docker
   script:
-    - cd src
     - npm install
-
+test:
+  stage: test
+  tags:
+    - docker
+  services:
+    - name: mvertes/alpine-mongo:latest
+      alias: mongo
+  variables:
+    MONGODB_URI: "mongodb://mongo:27017/serverTestDB"
+  script:
+    - npm install
+    - npm test

@@ -1,6 +1,9 @@
 const filterServType = require('./serviceTypeFilter')
+const MqttHandler = require('../MqttHandler')
+const client = new MqttHandler().getClient()
 
-const transform  = function (topic, payload) {
+
+const transform  = function (topic, payload, discard) {
     //temporary log messages
     console.log('topic:',topic)
     console.log('payload:',payload.toString())
@@ -16,15 +19,23 @@ const transform  = function (topic, payload) {
         const jPayload = JSON.parse(payload)
         
         if(rTopic){
-            jPayload.resTopic = rTopic
-            filterServType(jPayload)
+            if(discard){
+                if(rTopic){
+                    client.publish(`${rTopic}/appointments`,`{"success":false, "reason":"Server is overloaded with requests"}`,{qos:2})
+                }
+                
+            } else {
+                jPayload.resTopic = rTopic
+                filterServType(jPayload)
+            }
         } else {
             console.log(`Parsing of topic failed, topic: ${topic} has invalid format`)
-            
         }
 
     } catch(e) {
-        console.log(e)
+        if(rTopic){
+            client.publish(`${rTopic}`,`{"success":false, "reason":"${e.message}"}`,{qos:2})
+        }
     }
 }
 

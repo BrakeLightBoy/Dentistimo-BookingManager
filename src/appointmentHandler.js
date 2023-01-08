@@ -147,10 +147,11 @@ async function registerBooking(userPnum,clinic,dt){
                 const result = await appointmentService.checkIfTaken(dentist._id,date)
                 
                 if(!result){
-                    const appointment = await appointmentService.createAppointment(1,date,user._id,dentist._id,"reqId1")
+                    const iId=Math.floor(Math.random()*10000000)
+                    const rId='req'+Math.floor(Math.random()*10000000)
+                    const appointment = await appointmentService.createAppointment(iId,date,user._id,dentist._id,rId)
                     await postAppointments(clinic, year, month)
                     return true
-                    break;
                 }
             }
         }      

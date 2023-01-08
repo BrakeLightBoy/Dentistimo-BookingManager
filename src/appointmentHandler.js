@@ -21,12 +21,9 @@ function postAppointments(clinic, year, month){
         // postedEntries.push(clinic+year+month)
 
         getClinicFreeSlots(clinic,year,month).then(res => {
-            console.log("Appointment RES:",res)
-            console.log("Count RES:",JSON.stringify(res).length)
             const resPayload = {data: res, operation: 'clinic-free-slots'}
             client.publish(`clinics/${clinic}/${year}/${month}`,JSON.stringify(resPayload),{qos:2, retain:true})
         }).catch(e => {
-            console.log(e)
         })
     }
 }
@@ -43,8 +40,6 @@ const getDentistFreeSlots = async function (dentistId, year, month) {
     const lunchSlots = slotHandler.calcLunchSlots(dentist.lunch_time)
     let dentistTakenSlots = fikaSlot ? [fikaSlot] : []
     dentistTakenSlots = dentistTakenSlots.concat(lunchSlots)
-
-    console.log("dtake:",dentistTakenSlots)
 
     const daysInMonth = dateUtil.getDaysInMonth(year,month)
     
@@ -73,10 +68,6 @@ const getDentistFreeSlots = async function (dentistId, year, month) {
             }
         }
     }
-
-    console.log('Slots:',freeSlots)
-
-    console.log('Appointments:',appointments)
     
 
     for (const appointment of appointments){
@@ -132,7 +123,6 @@ async function getClinicFreeSlots(clinicId, year, month){
             }
         }
     }
-    console.log(totalSlots)
     return totalSlots
 }
 
@@ -151,8 +141,6 @@ async function registerBooking(userPnum,clinic,dt){
 
         const dentists = await dentistService.getDentistsByClinic(clinic)
         
-        console.log(dentists)
-
         const user = await userService.getUserByPnum(userPnum)
 
         if(user){

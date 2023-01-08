@@ -12,7 +12,6 @@ const transform  = function (topic, payload, discard) {
     try{
         rTopic = topic.split('/')[1]
     } catch(e){
-        console.log(e)
     }
 
     try{   

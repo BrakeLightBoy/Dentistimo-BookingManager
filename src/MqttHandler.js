@@ -15,7 +15,6 @@ class MqttHandler{
 
         
         client.on('connect', () => {
-            console.log(`Connected to MQTT broker with URI: ${brokerURI}`);
             client.subscribe('common/#',{qos:2})
         })
 

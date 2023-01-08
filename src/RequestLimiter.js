@@ -3,7 +3,7 @@ class RequestLimiter{
     //limits the number of requests that the component can process per time interval
     constructor() {
         const { RateLimiter} =  require('limiter')
-        const limiter = new RateLimiter({ tokensPerInterval: 5, interval: 'hour'})
+        const limiter = new RateLimiter({ tokensPerInterval: 5, interval: 100})
 
       
         if(RequestLimiter.instance instanceof RequestLimiter){

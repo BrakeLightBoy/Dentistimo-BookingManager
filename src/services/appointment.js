@@ -15,11 +15,9 @@ const createAppointment = async (issuance, date, user_id, dentist_id, request_id
                 dentist_id: dentist_id,
                 request_id: request_id
             });
-            console.log(appointment)
             return appointment;
 
         } catch(e){
-            console.log(e)
             return Promise.reject('Malformed appointment data');
         }
 
@@ -50,7 +48,6 @@ const editAppointment = async (id, newAppointment) => {
             return appointment;
 
         } catch(e){
-            console.log(e)
             return Promise.reject('Malformed appointment data');
         }
 
@@ -172,8 +169,6 @@ const getAppointmentByIssuance = async (issuance) => {
 // Find and delete an existing appointment
 const deleteAppointment = async (id) => {
     if(id){     
-        console.log(id)
-
         const appointment = await Appointment.deleteOne({_id: id})
 
         return appointment;

@@ -43,10 +43,8 @@ const editAppointment = async (id, newAppointment) => {
                 {
                     date: newAppointment.date || oldAppointment.date,
                     dentist_id: newAppointment.dentist_id || oldAppointment.dentist_id
-                }
+                }, {new: true}
             )
-
-            await appointment.save(); 
             return appointment;
 
         } catch(e){
